@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radar de Obsidiana — Precisión y vigilancia sobre el capital que se mueve en México</title>
 <meta name="description" content="Radar de Obsidiana: análisis quincenal sobre inversión, franquicias y capital privado en México.">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Radar de Obsidiana">
+<meta property="og:title" content="Radar de Obsidiana — Precisión y vigilancia sobre el capital que se mueve en México">
+<meta property="og:description" content="Un espacio editorial quincenal sobre inversión, franquicias y capital privado en México.">
+<meta property="og:image" content="https://radardeobsidiana.com/og/site-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://radardeobsidiana.com/">
+<meta property="og:locale" content="es_MX">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Radar de Obsidiana — Precisión y vigilancia sobre el capital que se mueve en México">
+<meta name="twitter:description" content="Un espacio editorial quincenal sobre inversión, franquicias y capital privado en México.">
+<meta name="twitter:image" content="https://radardeobsidiana.com/og/site-og.png">
 <style>
   :root {
     --negro: #0B0B0D;
@@ -59,6 +76,105 @@
   .hero h1 { font-size: clamp(30px, 6.5vw, 48px); color: var(--crema); max-width: 680px; margin: 0 auto 22px; }
   .hero .rule { width: 70px; height: 2px; background: var(--dorado); margin: 0 auto 26px; }
   .hero p.sub { font-size: clamp(14px, 3vw, 17px); color: #cfc8bc; max-width: 520px; margin: 0 auto; }
+
+  /* ---------- SUBSCRIBE ---------- */
+  .subscribe {
+    background: var(--negro);
+    padding: 0 24px 64px;
+    margin-top: -1px;
+  }
+  .subscribe-box {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .subscribe-box .label {
+    color: var(--dorado);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .subscribe-box h3 {
+    color: var(--crema);
+    font-size: clamp(19px, 4.5vw, 23px);
+    margin-bottom: 10px;
+  }
+  .subscribe-box p {
+    color: #cfc8bc;
+    font-size: 14px;
+    margin-bottom: 22px;
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .subscribe-form input[type="email"] {
+    flex: 1 1 260px;
+    min-width: 0;
+    padding: 13px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(176,141,87,0.4);
+    background: #16161a;
+    color: var(--crema);
+    font-size: 15px;
+    font-family: inherit;
+  }
+  .subscribe-form input[type="email"]::placeholder { color: #7a776e; }
+  .subscribe-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--dorado);
+  }
+  .subscribe-form button {
+    padding: 13px 22px;
+    border-radius: 6px;
+    border: none;
+    background: var(--dorado);
+    color: var(--negro);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s ease;
+    flex: 0 0 auto;
+  }
+  .subscribe-form button:hover { background: #c49f68; }
+  .subscribe-form button:disabled { opacity: 0.6; cursor: default; }
+  .subscribe-note {
+    font-size: 11.5px;
+    color: #6f6c64;
+    margin-top: 14px;
+  }
+  .subscribe-msg {
+    margin-top: 16px;
+    font-size: 14px;
+    display: none;
+  }
+  .subscribe-msg.show { display: block; }
+  .subscribe-msg.ok { color: #6bbf9a; }
+  .subscribe-msg.err { color: #d98a6f; }
+
+  .subscribe-inline {
+    margin: 50px 0 0;
+    padding: 32px 26px;
+    background: var(--crema-2);
+    border: 1px solid #e6e0d3;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .subscribe-inline .label { color: var(--jade); }
+  .subscribe-inline h3 { color: var(--negro); }
+  .subscribe-inline p { color: #55524a; }
+  .subscribe-inline .subscribe-form input[type="email"] {
+    background: #fff;
+    border: 1px solid #ddd6c8;
+    color: var(--text);
+  }
+  .subscribe-inline .subscribe-form input[type="email"]::placeholder { color: #a19c8f; }
 
   .wrap { max-width: var(--container); margin: 0 auto; padding: 60px 22px; }
 
@@ -141,6 +257,20 @@
   <p class="sub">Un espacio editorial quincenal sobre inversión, franquicias y capital privado en México. Sin recomendaciones de compra, sin promesas de rendimiento — solo el mismo tipo de análisis que un inversionista institucional exige antes de mover capital.</p>
 </div>
 
+<div class="subscribe">
+  <div class="subscribe-box">
+    <div class="label">Suscríbete</div>
+    <h3>Recíbelo directo en tu correo</h3>
+    <p>Cada quincena, sin spam, sin relleno. Cancela cuando quieras.</p>
+    <form class="subscribe-form" data-subscribe action="https://formspree.io/f/xaqroykl" method="POST">
+      <input type="email" name="email" placeholder="tu@correo.com" required autocomplete="email">
+      <button type="submit">Suscribirme</button>
+    </form>
+    <div class="subscribe-msg"></div>
+    <div class="subscribe-note">Nunca compartimos tu correo con nadie.</div>
+  </div>
+</div>
+
 <div class="wrap">
   <div class="section-label">Ediciones</div>
 
@@ -183,12 +313,60 @@
     <p>Esa es la combinación que buscamos en cada edición: el filo de la precisión y la constancia de la vigilancia, aplicados a las decisiones de capital que se están tomando en México ahora mismo.</p>
     <p class="signoff">Bienvenido(a) al Radar.</p>
   </div>
+
+  <div class="subscribe-inline">
+    <div class="label">Suscríbete</div>
+    <h3>No te pierdas la próxima edición</h3>
+    <p>Cada quincena, directo en tu correo. Cancela cuando quieras.</p>
+    <form class="subscribe-form" data-subscribe action="https://formspree.io/f/xaqroykl" method="POST">
+      <input type="email" name="email" placeholder="tu@correo.com" required autocomplete="email">
+      <button type="submit">Suscribirme</button>
+    </form>
+    <div class="subscribe-msg"></div>
+  </div>
 </div>
 
 <footer class="site">
   <div class="brandmark">Radar de Obsidiana</div>
   <div class="fine">Publicación quincenal · México</div>
 </footer>
+
+<script>
+  document.querySelectorAll('form[data-subscribe]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = form.parentElement.querySelector('.subscribe-msg');
+      var btn = form.querySelector('button');
+      var data = new FormData(form);
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      msg.className = 'subscribe-msg show';
+      msg.textContent = '';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          msg.className = 'subscribe-msg show ok';
+          msg.textContent = '✓ Listo, ya estás suscrito. Nos vemos en la próxima edición.';
+          form.reset();
+          btn.textContent = 'Suscribirme';
+          btn.disabled = false;
+        } else {
+          throw new Error('Respuesta no válida');
+        }
+      }).catch(function () {
+        msg.className = 'subscribe-msg show err';
+        msg.textContent = 'Algo salió mal. Intenta de nuevo en un momento.';
+        btn.textContent = 'Suscribirme';
+        btn.disabled = false;
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
