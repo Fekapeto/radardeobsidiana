@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar de Obsidiana — Edición 01</title>
+<style>
+  :root {
+    --negro: #0B0B0D;
+    --negro-2: #16161a;
+    --jade: #2E7D5B;
+    --jade-light: #3f9c73;
+    --dorado: #B08D57;
+    --gris: #8A8680;
+    --crema: #F7F4EE;
+    --crema-2: #efeadf;
+    --text: #23221f;
+
+    --container: 700px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--crema);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--negro);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  a { color: var(--jade); text-decoration-color: rgba(46,125,91,0.35); }
+  a:hover { text-decoration-color: var(--jade); }
+
+  img, svg { max-width: 100%; }
+
+  /* ---------------- TOP BAR ---------------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--negro);
+    color: var(--crema);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(176,141,87,0.4);
+  }
+  .topbar .brand { display: flex; align-items: center; gap: 10px; color: var(--crema); font-weight: 600; }
+  .topbar .brand .dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--dorado); }
+  .topbar .ed { color: var(--dorado); font-size: 11px; }
+
+  /* ---------------- HERO ---------------- */
+  .hero {
+    background: radial-gradient(ellipse at 50% 0%, #17171b 0%, var(--negro) 60%);
+    color: var(--crema);
+    padding: 72px 24px 84px;
+    text-align: center;
+  }
+  .hero .mark {
+    width: 42px; height: 42px;
+    border: 2px solid var(--dorado);
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto 32px;
+  }
+  .hero .mark::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: -12px;
+    width: 66px; height: 1px;
+    background: var(--dorado);
+    transform: rotate(28deg);
+  }
+  .hero .kicker {
+    letter-spacing: 3px;
+    font-size: clamp(10px, 2.4vw, 12px);
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 6.5vw, 46px);
+    color: var(--crema);
+    max-width: 640px;
+    margin: 0 auto 22px;
+  }
+  .hero .rule { width: 70px; height: 2px; background: var(--dorado); margin: 0 auto 22px; }
+  .hero .sub {
+    font-size: clamp(13px, 3vw, 16px);
+    color: #cfc8bc;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ---------------- LAYOUT ---------------- */
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 56px 22px;
+  }
+  .wrap.tight { padding-top: 40px; padding-bottom: 40px; }
+
+  section + section {
+    border-top: 1px solid #ddd6c8;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.2px;
+    color: var(--jade);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .art-title {
+    font-size: clamp(24px, 5.5vw, 34px);
+    margin-bottom: 8px;
+  }
+
+  .art-meta {
+    font-size: 13px;
+    color: var(--gris);
+    font-style: italic;
+    margin-bottom: 30px;
+  }
+
+  h2.section-head {
+    font-size: clamp(18px, 4vw, 21px);
+    margin-top: 38px;
+    margin-bottom: 12px;
+    color: var(--jade);
+  }
+
+  p { margin: 0 0 16px; }
+
+  .lede {
+    font-size: clamp(17px, 4vw, 19px);
+    color: #333230;
+  }
+  .lede::first-letter {
+    font-family: Georgia, serif;
+    font-size: 3.4em;
+    float: left;
+    line-height: 0.78;
+    padding-right: 10px;
+    padding-top: 6px;
+    color: var(--dorado);
+  }
+
+  sup.fn a {
+    color: var(--jade);
+    font-weight: 700;
+    font-size: 0.68em;
+    text-decoration: none;
+    padding: 0 1px;
+  }
+  sup.fn a:hover { text-decoration: underline; }
+
+  strong { color: var(--negro); }
+
+  .callout {
+    background: #ffffff;
+    border-left: 3px solid var(--dorado);
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-family: Georgia, serif;
+    font-size: clamp(16px, 4vw, 18px);
+    color: var(--negro);
+    font-weight: 600;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* ---------------- TABLE → RESPONSIVE CARDS ---------------- */
+  .compare {
+    margin: 22px 0 28px;
+    border: 1px solid #ddd6c8;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .compare .row {
+    display: grid;
+    grid-template-columns: 140px repeat(3, 1fr);
+    border-top: 1px solid #ddd6c8;
+  }
+  .compare .row:first-child { border-top: none; }
+  .compare .row.head {
+    background: var(--negro);
+    color: var(--crema);
+    font-family: Georgia, serif;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .compare .cell {
+    padding: 12px 14px;
+    font-size: 13.5px;
+    border-left: 1px solid #ddd6c8;
+  }
+  .compare .row.head .cell { border-left: 1px solid rgba(255,255,255,0.12); }
+  .compare .cell:first-child { border-left: none; }
+  .compare .row:not(.head) .cell:first-child {
+    font-weight: 700;
+    color: var(--jade);
+    background: var(--crema-2);
+  }
+  .compare .row:nth-child(even):not(.head) { background: #fbfaf7; }
+
+  @media (max-width: 560px) {
+    .compare .row { grid-template-columns: 1fr; }
+    .compare .row.head { display: none; }
+    .compare .cell { border-left: none !important; border-top: 1px solid #e6e0d3; padding: 10px 14px; }
+    .compare .row .cell:first-child { border-top: none; }
+    .compare .cell::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gris);
+      margin-bottom: 3px;
+    }
+    .compare .row:not(.head) .cell:first-child::before { content: ""; margin: 0; }
+  }
+
+  /* ---------------- FUENTES ---------------- */
+  .fuentes {
+    margin-top: 44px;
+    padding-top: 20px;
+    border-top: 1px dashed #cfc8bc;
+  }
+  .fuentes .fuentes-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gris);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .fuentes ol { margin: 0; padding-left: 20px; }
+  .fuentes li {
+    font-size: 13px;
+    color: #55524a;
+    margin-bottom: 9px;
+    line-height: 1.5;
+    scroll-margin-top: 70px;
+  }
+  .fuentes li a.back {
+    color: var(--gris);
+    text-decoration: none;
+    margin-left: 4px;
+  }
+  .fuentes .verify {
+    color: #a3452c;
+    font-weight: 700;
+  }
+
+  /* ---------------- CIERRE ---------------- */
+  .radar-item { margin-bottom: 20px; }
+  .radar-item .num {
+    display: inline-block;
+    color: var(--dorado);
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .next-box {
+    background: var(--negro);
+    color: var(--crema);
+    padding: 28px 26px;
+    margin: 30px 0;
+    border-radius: 10px;
+  }
+  .next-box .label {
+    color: var(--dorado);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10.5px;
+    margin-bottom: 10px;
+  }
+  .next-box h3 { color: var(--crema); font-size: clamp(19px, 5vw, 22px); margin: 0 0 10px; }
+  .next-box p { color: #cfc8bc; margin-bottom: 0; }
+
+  .closing-note { font-style: italic; color: var(--gris); margin-top: 26px; }
+
+  footer.site {
+    text-align: center;
+    padding: 40px 20px 60px;
+    color: var(--gris);
+  }
+  footer.site .brandmark {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--dorado);
+    font-family: Georgia, serif;
+    margin-bottom: 6px;
+  }
+  footer.site .fine { font-size: 11px; }
+
+  ::selection { background: rgba(176,141,87,0.35); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span> Radar de Obsidiana</div>
+  <div class="ed">Edición 01 · Julio 2026</div>
+</div>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="mark"></div>
+  <div class="kicker">Radar de Obsidiana · Edición 01</div>
+  <h1>La década de México<br>empieza ahora</h1>
+  <div class="rule"></div>
+  <div class="sub">Precisión y vigilancia sobre el capital que se mueve en México</div>
+</div>
+
+<!-- ============ EDITORIAL ============ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Editorial</div>
+    <h1 class="art-title">Bienvenido al Radar</h1>
+    <div class="art-meta">Edición 1 · Radar de Obsidiana</div>
+
+    <p class="lede">Hay momentos en los que un país cambia de categoría sin que la mayoría se dé cuenta a tiempo. Mientras eso ocurre, la conversación pública sobre inversión en México sigue dominada por dos extremos igual de inútiles: el optimismo genérico de quien repite "México está de moda" sin poder sostenerlo con un solo dato, y el pesimismo reflejo de quien desconfía de todo por costumbre, sin distinguir una oportunidad real de un espejismo. Entre esos dos ruidos, casi no queda espacio para algo más simple: mirar con precisión.</p>
+
+    <p>Ese es el espacio que quiere ocupar este espacio editorial. La obsidiana fue, durante siglos, la herramienta de mayor precisión que tuvo Mesoamérica, una piedra volcánica capaz de producir un filo más fino que casi cualquier material de su época, usada tanto para cortar como para fabricar espejos de una claridad que los pueblos prehispánicos asociaban con la capacidad de ver lo que otros no veían. Un radar, por su parte, no predice el futuro, vigila constantemente el presente para detectar movimiento antes de que sea evidente para todos. Esa es la combinación que buscamos en cada edición: el filo de la precisión y la constancia de la vigilancia, aplicados a las decisiones de capital que se están tomando en México ahora mismo.</p>
+
+    <p>No vas a encontrar aquí recomendaciones de compra ni promesas de rendimiento. Vas a encontrar el mismo tipo de análisis que cualquier inversionista institucional exige antes de mover capital, adaptado a un lector que toma decisiones con su propio patrimonio, no con el de un fondo. Datos verificables, comparaciones honestas incluso cuando no convienen a una narrativa cómoda, y la disciplina de decir "esto no lo sabemos todavía" cuando es la verdad, en lugar de rellenar el vacío con opinión disfrazada de certeza.</p>
+
+    <p>En esta primera edición, trazamos el mapa completo: por qué 2026 es el año en que Banxico marca el inicio formal de una ventana de oportunidad que se cierra en 2030; por qué el sector de franquicias mexicano crece varias veces más rápido que la economía general del país incluso en un año de consumo débil; y por qué comparar honestamente CETES, bienes raíces y participaciones privadas revela un panorama más rico, y más exigente, que quedarse con la primera respuesta cómoda. Cada edición futura seguirá esa misma lógica: contexto macro, sector en movimiento, y la decisión personal que conecta ambos.</p>
+
+    <p style="font-family: Georgia, serif; color: var(--jade); font-weight: 600; font-size: 17px;">Bienvenido(a) al Radar.</p>
+  </div>
+</section>
+
+<!-- ============ ARTÍCULO 1 ============ -->
+<section id="articulo-1">
+  <div class="wrap">
+    <div class="eyebrow">Contexto macro</div>
+    <h1 class="art-title">Cuatro años: el plazo que México no puede desperdiciar</h1>
+    <div class="art-meta">Edición 1 · Radar de Obsidiana</div>
+
+    <p class="lede">Hay fechas que los bancos centrales no ponen por accidente. Cuando Banxico proyecta que 2026 marca el inicio formal del periodo de apogeo de la relocalización de cadenas de suministro, no está describiendo una tendencia más. Está fijando una ventana con un principio y un final: un periodo de oportunidad estratégica que se extenderá hasta 2030.<sup class="fn"><a href="#f1-1" id="r1-1">1</a></sup> <strong>Cuatro años.</strong> Ese es el reloj que ya está corriendo mientras la mayoría sigue hablando de nearshoring como si fuera un concepto abstracto de columna de opinión.</p>
+
+    <p>Los números del primer trimestre ya lo confirman con hechos, no con proyecciones. México recibió <strong>23,591 MDD</strong> en inversión extranjera directa solo en el primer trimestre de 2026, un récord histórico trimestral.<sup class="fn"><a href="#f1-2" id="r1-2">2</a></sup> Y lo más revelador no es el monto, es el motivo. Más de la mitad de esa inversión que hoy entra al país tiene motivación explícita de nearshoring, una proporción que hace apenas cuatro años no lograba superar un tercio.<sup class="fn"><a href="#f1-3" id="r1-3">3</a></sup> Ese capital no está llegando por casualidad ni por el tamaño del mercado interno, está llegando porque México se convirtió en la pieza de tablero que todas las cadenas de suministro globales necesitan mover.</p>
+
+    <h2 class="section-head">La paradoja que hay que entender antes de invertir un peso</h2>
+    <p>Aquí es donde la mayoría de los análisis se quedan cortos, y donde el Radar quiere ser distinto: los titulares optimistas no cuentan toda la historia. Mientras la inversión extranjera directa rompe récords, el crecimiento económico del país se mantiene limitado. Son dos líneas que deberían moverse juntas y no lo están haciendo, y esa desconexión es exactamente la clase de señal que un inversionista serio necesita entender, no ignorar.</p>
+
+    <p>La explicación no es que el nearshoring esté fallando. Es que el capital institucional se mueve más rápido que la infraestructura que lo sostiene. BBVA ha señalado que México necesita mayor inversión en infraestructura energética para cumplir con los compromisos corporativos de cero emisiones que exigen las empresas que están relocalizando operaciones aquí, los centros de datos y las plantas que la inteligencia artificial requiere, son una matriz energética que hoy todavía no está a la altura de la demanda.<sup class="fn"><a href="#f1-4" id="r1-4">4</a></sup> Quien entienda esta brecha antes que el resto del mercado tiene ventaja: no toda la ola beneficia por igual a todos los sectores, y la energía es uno de los cuellos de botella que va a definir ganadores y rezagados durante los próximos cuatro años.</p>
+
+    <h2 class="section-head">El mapa no es parejo</h2>
+    <p>El nearshoring tampoco reparte sus beneficios de forma equitativa entre regiones, y ahí está la segunda lección para el inversionista atento. Guadalajara concentra ya más de 1,000 empresas tecnológicas enfocadas en semiconductores, inteligencia artificial aplicada a manufactura y automatización, consolidándose como el polo de software y talento especializado del país. Monterrey, por su parte, vive un boom inmobiliario industrial con valuaciones atractivas en sus FIBRAs, (FIBRA Monterrey, Prologis, Vesta y NEXT) impulsado por su ecosistema manufacturero integrado.<sup class="fn"><a href="#f1-5" id="r1-5">5</a></sup></p>
+
+    <p>Pero el dato que más nos interesa aquí en el Radar es el que apunta hacia el sur. El Aeropuerto Internacional Felipe Ángeles y el Corredor Interoceánico están impulsando la logística tecnológica hacia el sureste del país.<sup class="fn"><a href="#f1-5b" id="r1-5b">5</a></sup> Es la primera vez, en varios ciclos de inversión, que el sureste mexicano aparece no como periferia, sino como corredor estratégico. Para quien vive y opera negocios en esta región, como es nuestro caso, esto no es una nota geográfica menor. Es la confirmación de que la conversación de capital se está moviendo hacia territorios que antes no estaban en el radar de nadie.</p>
+
+    <h2 class="section-head">¿Dónde entra el inversionista individual?</h2>
+    <p>Aquí está el punto que conecta esta macroeconomía con una decisión personal de portafolio. Cuando el capital institucional entra con esta magnitud a un país, no se queda encapsulado en manufactura y logística. Genera empleo, genera ingreso disponible, y ese ingreso se traduce, con cierto rezago, en consumo en restaurantes, retail, servicios y experiencias. La inversión en infraestructura pesada es terreno de fondos institucionales y gubernamentales. Pero el consumo que esa infraestructura activa detrás de sí es terreno fértil para negocios de menor escala, probados y replicables: el tipo de negocio en el que un inversionista individual sí puede participar directamente.</p>
+
+    <p>Esa es la tesis que conecta este primer artículo con el resto de la edición:</p>
+
+    <div class="callout">El apogeo del nearshoring no es solo una historia de manufactura. Es el contexto macro que explica por qué el sector de franquicias y consumo en México tiene, en este momento específico, un viento a favor que no siempre está presente.</div>
+
+    <h2 class="section-head">Lo que hay que vigilar</h2>
+    <p>La ventana se extiende a 2030, no de forma indefinida. Los próximos cuatro años son el periodo en el que la brecha entre infraestructura y capital, o se cierra, o se convierte en el cuello de botella que frene la siguiente fase. El Radar seguirá vigilando tres variables en particular: el avance de inversión en energía, la distribución geográfica del capital hacia nuevas regiones, y el ritmo real de traducción de esta inversión en consumo interno.</p>
+
+    <p>Gracias por leernos.</p>
+
+    <div class="fuentes">
+      <div class="fuentes-title">Fuentes</div>
+      <ol>
+        <li id="f1-1"><strong>1.</strong> Banxico, proyecciones de relocalización de cadenas de suministro, vía "Estado del Nearshoring en México 2026" — <a href="https://www.garciayasociados.net/estado-del-nearshoring-en-mexico-2026-estudio" target="_blank" rel="noopener">garciayasociados.net</a> <a class="back" href="#r1-1">↩</a></li>
+        <li id="f1-2"><strong>2.</strong> Ídem (IED récord Q1 2026, $23,591 MDD) <a class="back" href="#r1-2">↩</a></li>
+        <li id="f1-3"><strong>3.</strong> Agente Digitalizado, "Nearshoring en México 2026: Datos, Industrias Ganadoras y Proyecciones a 2030" — <a href="https://agentedigitalizado.com/nearshoring-en-mexico-2026-datos-industrias-ganadoras-y-proyecciones-a-2030/" target="_blank" rel="noopener">agentedigitalizado.com</a> <a class="back" href="#r1-3">↩</a></li>
+        <li id="f1-4"><strong>4.</strong> GPI News / BBVA Research, infraestructura energética — <a href="https://puertointerior.guanajuato.gob.mx/blog/2026/05/08/nearshoring-mexico-2026-39-inversion-y-ventaja-horaria/" target="_blank" rel="noopener">puertointerior.guanajuato.gob.mx</a> <a class="back" href="#r1-4">↩</a></li>
+        <li id="f1-5"><strong>5.</strong> Ídem (Guadalajara, Monterrey, FIBRAs, AIFA y Corredor Interoceánico) <a class="back" href="#r1-5">↩</a></li>
+        <li id="f1-5b"><strong>5.</strong> Ver fuente anterior <a class="back" href="#r1-5b">↩</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARTÍCULO 2 ============ -->
+<section id="articulo-2">
+  <div class="wrap">
+    <div class="eyebrow">Sector</div>
+    <h1 class="art-title">Seis por ciento: la cifra que crece ocho veces más rápido que el país</h1>
+    <div class="art-meta">Radiografía de franquicias en México · Edición 1 · Radar de Obsidiana</div>
+
+    <p class="lede">El sector de franquicias mexicano llega a 2026 con una cifra que, a primera vista, decepciona: la Asociación Mexicana de Franquicias estima un crecimiento superior al <strong>6%</strong> para este año, lejos del optimismo que se manejaba hace apenas doce meses.<sup class="fn"><a href="#f2-1" id="r2-1">1</a></sup> Pero el contexto es lo que convierte ese número de "modesto" a "notable". La economía mexicana creció apenas 0.7% anual en 2025, y para 2026 se proyecta entre 1.2% y 1.5%.<sup class="fn"><a href="#f2-2" id="r2-2">2</a></sup> Un sector que crece cuatro o cinco veces más rápido que el PIB nacional, en un año de consumo débil, no está desacelerando, está demostrando por qué el modelo de franquicia existe.</p>
+
+    <p>De hecho, el año de referencia inmediato anterior ilustra mejor la tesis. En 2024, las franquicias agrupadas en la AMF crecieron 11% anual, poco más de 8 veces el avance de la economía mexicana en el mismo periodo.<sup class="fn"><a href="#f2-3" id="r2-3">3</a></sup> Esa proporción, no el porcentaje absoluto, es el dato que un inversionista debería memorizar. La pregunta relevante nunca es "¿cuánto crece el sector?", sino "¿cuánto crece frente a todo lo demás?"</p>
+
+    <h2 class="section-head">El tamaño real del sector</h2>
+    <p>Las cifras de base ya son sustanciales. México cuenta con más de 1,500 marcas de franquicia, cerca de 95 mil puntos de venta y más de un millón de empleos directos, aportando alrededor del 5% del Producto Interno Bruto nacional.<sup class="fn"><a href="#f2-4" id="r2-4">4</a></sup> De esas marcas, 85% son mexicanas y 15% internacionales, un dato que desmonta la idea de que el modelo de franquicia en México es principalmente una importación extranjera. Es, en su gran mayoría, un vehículo de crecimiento empresarial doméstico.</p>
+
+    <p>Un 20% de los socios de la Asociación Mexicana de Franquicias (AMF) ya tiene presencia en otros países, y la asociación se incorporó este año a la mesa directiva del World Franchise Council, el organismo que agrupa a las asociaciones de franquicias a nivel mundial.<sup class="fn"><a href="#f2-1b" id="r2-1b">1</a></sup> La lectura es clara: el modelo mexicano ya no solo importa marcas, empieza a exportarlas.</p>
+
+    <h2 class="section-head">Las cuatro palancas de 2026</h2>
+    <p>La AMF identifica un conjunto específico de factores detrás del crecimiento esperado este año:</p>
+    <p><strong>Tecnología y datos.</strong> Más de 70% de las marcas del sector ya opera con estrategias omnicanal, y al menos 30% integra inteligencia artificial en áreas como predicción de ventas, optimización de precios, selección de ubicaciones y atención automatizada al cliente.<sup class="fn"><a href="#f2-5" id="r2-5">5</a></sup> La brecha tecnológica entre franquicias que invierten en estos sistemas y las que no lo hacen, se está convirtiendo en la línea divisoria entre las que ganan participación de mercado y las que se pierden.</p>
+
+    <p><strong>Consolidación regional.</strong> Las franquicias con mejor desempeño ya no se concentran únicamente en los polos tradicionales. Puebla, por ejemplo, ocupa el sexto lugar nacional en número de franquicias, solo detrás de Ciudad de México, Querétaro, Nuevo León, Estado de México y Jalisco.<sup class="fn"><a href="#f2-7" id="r2-7">7</a></sup> El modelo de franquicia está siguiendo el mismo patrón de descentralización geográfica que el nearshoring, una convergencia que no es casualidad.</p>
+
+    <p><strong>El sector que sostiene todo lo demás.</strong> El sector de alimentos y bebidas continúa siendo el motor principal del ecosistema, junto con salud y bienestar como categorías de mayor tracción.</p>
+
+    <h2 class="section-head">El riesgo que nadie quiere calcular antes de invertir</h2>
+    <p>Ningún análisis honesto del sector puede saltarse la otra cara de la moneda: no todas las franquicias sobreviven, y el modelo no elimina el riesgo, lo reestructura. Se estima que hasta el 74% de las franquicias en México fracasa<sup class="fn"><a href="#f2-8" id="r2-8">8</a></sup>, una cifra que conviene tomar con el contexto adecuado: el fracaso rara vez está en el concepto de negocio en sí, sino en la selección del operador, la ubicación, y la disciplina en la ejecución del modelo, justo las tres variables que separan a un inversionista informado de uno que simplemente compró una marca conocida.</p>
+
+    <p>Esta es, quizás, la distinción más importante que el Radar quiere dejar clara en esta edición:</p>
+
+    <div class="callout">El verdadero inversionista de franquicias ya no opera, participa.</div>
+
+    <p>El modelo de franquicia nació para que el franquiciatario opere directamente el punto de venta. Pero el mercado ha evolucionado hacia un segundo nivel, donde el capital entra a través de estructuras que permiten participar en el crecimiento de una marca sin asumir la operación diaria, dejando esa responsabilidad en manos de operadores especializados, mientras el inversionista participa del resultado. Esa evolución no resuelve el riesgo del negocio subyacente. Pero sí cambia la pregunta que un inversionista debe hacerse. La pregunta ya no es "¿sé operar un restaurante?", sino "¿confío en quien lo va a operar, y entiendo la estructura bajo la cual participo?"</p>
+
+    <h2 class="section-head">Lo que hay que vigilar</h2>
+    <p>El Radar seguirá de cerca tres variables del sector para la próxima edición: el comportamiento real del consumo durante el Mundial (si la proyección optimista de Feher se cumple o si prevalece el escenario conservador de la AMF), el avance de la adopción tecnológica más allá del 30% actual, y la velocidad con la que la descentralización geográfica sigue moviéndose hacia nuevas regiones del país.</p>
+
+    <p>Gracias por leernos.</p>
+
+    <div class="fuentes">
+      <div class="fuentes-title">Fuentes</div>
+      <ol>
+        <li id="f2-1"><strong>1.</strong> Cronista.com, AMF / Betsy Eslava, "Franquicias mexicanas conquistan el mercado global" — <a href="https://www.cronista.com/mexico/finanzas-economia/franquicias-mexicanas-conquistan-el-mercado-global-aportan-el-5-del-pib-y-preven-crecer-mas-del-6-en-2026/" target="_blank" rel="noopener">cronista.com</a> <a class="back" href="#r2-1">↩</a></li>
+        <li id="f2-2"><strong>2.</strong> La Jornada, "Franquicias se adaptan para sortear la baja en el consumo: AMF" — <a href="https://www.jornada.com.mx/noticia/2026/02/17/economia/franquicias-se-adaptan-para-sortear-la-baja-en-el-consumo-amf" target="_blank" rel="noopener">jornada.com.mx</a> <a class="back" href="#r2-2">↩</a></li>
+        <li id="f2-3"><strong>3.</strong> La Jornada, "Franquicias crecieron 11% en un año" (dato 2024) — <a href="https://www.jornada.com.mx/2025/02/09/economia/014n1eco" target="_blank" rel="noopener">jornada.com.mx</a> <a class="back" href="#r2-3">↩</a></li>
+        <li id="f2-4"><strong>4.</strong> Cronista.com (tamaño del sector, 85%/15% marcas nacionales/internacionales, World Franchise Council) <a class="back" href="#r2-4">↩</a></li>
+        <li id="f2-5"><strong>5.</strong> La Jornada (adopción tecnológica, 70% omnicanal, 30% IA) <a class="back" href="#r2-5">↩</a></li>
+        <li id="f2-6"><strong>6.</strong> Feher Consulting, "Franquicias presentan un crecimiento sostenido durante primer trimestre de 2026" — <a href="https://feherandfeher.com/franquicias-presentan-un-crecimiento-sostenido-durante-primer-trimestre-de-2026/" target="_blank" rel="noopener">feherandfeher.com</a></li>
+        <li id="f2-7"><strong>7.</strong> Asociación Mexicana de Franquicias, LinkedIn (dato Puebla, sexto lugar nacional) — <a href="https://mx.linkedin.com/company/amfranquicias" target="_blank" rel="noopener">linkedin.com</a> <a class="back" href="#r2-7">↩</a></li>
+        <li id="f2-8"><strong>8.</strong> Forbes México, "La nueva era de las franquicias en México" — <a href="https://forbes.com.mx/la-nueva-era-de-las-franquicias-en-mexico/" target="_blank" rel="noopener">forbes.com.mx</a> — <span class="verify">verificar metodología del dato antes de imprimir</span> <a class="back" href="#r2-8">↩</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARTÍCULO 3 ============ -->
+<section id="articulo-3">
+  <div class="wrap">
+    <div class="eyebrow">Decisión personal</div>
+    <h1 class="art-title">12% real: lo que tu plusvalía no te está diciendo</h1>
+    <div class="art-meta">CETES, ladrillo o participaciones: el trade-off honesto · Edición 1 · Radar de Obsidiana</div>
+
+    <p class="lede">Pregúntale a diez mexicanos con capital disponible dónde tienen su dinero, y la mayoría te va a dar dos respuestas: CETES, porque "es seguro y lo respalda el gobierno", o un departamento, porque "algo que puedo tocar no me lo pueden quitar". Ambas respuestas tienen lógica. Ninguna de las dos está completa. Y 2026 es precisamente el año en el que esa incompletitud empieza a costar dinero real.</p>
+
+    <h2 class="section-head">Lo que de verdad está pagando CETES hoy</h2>
+    <p>Empecemos por el instrumento más popular. La tasa de referencia de Banxico se ubica en 6.50% desde mayo de 2026, tras un ciclo de recortes que partió de un máximo histórico de 11.25% en 2023.<sup class="fn"><a href="#f3-1" id="r3-1">1</a></sup> Es una caída de casi 5 puntos porcentuales en tres años, y se refleja directamente en lo que paga tu dinero en CETES.</p>
+
+    <p>Al 21 de julio de 2026, los rendimientos de la curva son: 6.20% a 28 días, 6.63% a 91 días, 6.75% a 175 días, y 7.94% en el plazo largo de 693 días, este último, la tasa más alta de toda la curva.<sup class="fn"><a href="#f3-2" id="r3-2">2</a></sup> Son tasas brutas, antes de impuestos. Y ahí está el primer detalle que casi nadie descuenta al calcular su rendimiento real: la retención de ISR provisional para 2026 se ubica en 0.90%, y a eso hay que restarle la inflación del periodo. Un CETE a 28 días pagando 6.20% bruto, con inflación rondando el 4%, deja un rendimiento real neto que apenas compensa el riesgo de no hacer absolutamente nada con tu capital.</p>
+
+    <p>Esto no significa que CETES sea mala decisión, sigue siendo el instrumento de menor riesgo y mayor liquidez que existe en México. Significa que "poner el dinero en CETES" y "tener una estrategia de inversión" son dos cosas distintas, y confundirlas es el error más común y menos cuestionado del ahorrador mexicano.</p>
+
+    <h2 class="section-head">El ladrillo: la ganancia que se ve más grande de lo que es</h2>
+    <p>El segundo refugio favorito tiene un problema distinto: no es que rinda poco, es que se mide mal. El ejemplo más claro viene de un caso real de cálculo de plusvalía: una propiedad con 40% de ganancia nominal en cinco años, en un periodo con 28% de inflación acumulada, en realidad solo generó un 12% de ganancia real, todavía positiva, pero menos de un tercio de lo que el número original hacía parecer.<sup class="fn"><a href="#f3-3" id="r3-3">3</a></sup></p>
+
+    <p>Ese es el ejercicio que casi nadie hace antes de sentirse satisfecho con "mi casa ya vale el doble de lo que pagué". La plusvalía nominal es la que se presume en las reuniones familiares. La plusvalía real, descontada la inflación, el mantenimiento, el predial y los costos de transacción, es la que de verdad importa para comparar contra cualquier otra alternativa.</p>
+
+    <p>Además, la plusvalía no es la única forma de medir un inmueble como inversión. El cap rate, el rendimiento anual que genera la renta de una propiedad sobre su precio, es la métrica que revela si estás comprando por flujo de efectivo o pagando una prima por expectativa de apreciación futura.<sup class="fn"><a href="#f3-4" id="r3-4">4</a></sup> Un cap rate alto favorece al inversionista que busca ingreso corriente; un cap rate bajo generalmente implica que estás pagando más por una zona con mayor expectativa de plusvalía y menor rendimiento inmediato. Pocas veces ambos se dan al mismo tiempo, en el mismo inmueble.</p>
+
+    <p>Una encuesta de CBRE del primer trimestre de 2026 encontró que 83% de los inversionistas institucionales planea mantener o incrementar su exposición a bienes raíces este año<sup class="fn"><a href="#f3-1b" id="r3-1b">1</a></sup>, lo cual confirma que el activo sigue siendo atractivo, pero para quien entiende de cap rates, vacancia y costos de financiamiento, no para quien simplemente compra "porque siempre sube".</p>
+
+    <h2 class="section-head">Poniendo los tres frente a frente</h2>
+    <div class="compare">
+      <div class="row head">
+        <div class="cell"></div><div class="cell">CETES</div><div class="cell">Bienes raíces</div><div class="cell">Participaciones privadas</div>
+      </div>
+      <div class="row">
+        <div class="cell">Rendimiento esperado</div>
+        <div class="cell" data-label="CETES">~6.2–7.9% bruto anual</div>
+        <div class="cell" data-label="Bienes raíces">Variable; plusvalía + renta, menos inflación y costos</div>
+        <div class="cell" data-label="Participaciones privadas">Variable, ligado al desempeño del negocio</div>
+      </div>
+      <div class="row">
+        <div class="cell">Liquidez</div>
+        <div class="cell" data-label="CETES">Alta (días a 2 años)</div>
+        <div class="cell" data-label="Bienes raíces">Baja (meses a años para vender)</div>
+        <div class="cell" data-label="Participaciones privadas">Baja (horizonte de varios años)</div>
+      </div>
+      <div class="row">
+        <div class="cell">Esfuerzo de gestión</div>
+        <div class="cell" data-label="CETES">Ninguno</div>
+        <div class="cell" data-label="Bienes raíces">Medio-alto (administración, vacancia, mantenimiento)</div>
+        <div class="cell" data-label="Participaciones privadas">Ninguno (el operador opera)</div>
+      </div>
+      <div class="row">
+        <div class="cell">Ticket de entrada</div>
+        <div class="cell" data-label="CETES">Bajo</div>
+        <div class="cell" data-label="Bienes raíces">Alto</div>
+        <div class="cell" data-label="Participaciones privadas">Medio-alto</div>
+      </div>
+      <div class="row">
+        <div class="cell">Principal riesgo</div>
+        <div class="cell" data-label="CETES">Erosión por inflación</div>
+        <div class="cell" data-label="Bienes raíces">Iliquidez + costos ocultos</div>
+        <div class="cell" data-label="Participaciones privadas">Riesgo del operador y del negocio</div>
+      </div>
+    </div>
+
+    <h2 class="section-head">El costo de oportunidad que nadie factura</h2>
+    <p>Aquí es donde el Radar quiere ser honesto en ambas direcciones, incluso cuando no conviene comercialmente. Las participaciones en negocios privados no son automáticamente superiores a CETES o a bienes raíces. Tienen su propio perfil de riesgo, y el más relevante es distinto al de los otros dos: no es riesgo de mercado ni de inflación, es <strong>riesgo de operador</strong>, la capacidad, honestidad y ejecución de quien administra el negocio en el que participas.</p>
+
+    <p>Lo que sí es cierto es esto: con tasas de Banxico en tendencia a la baja y la plusvalía inmobiliaria rindiendo menos de lo que aparenta en términos reales, el costo de mantener el 100% del patrimonio entre estos dos instrumentos tradicionales es más alto hoy que hace tres años. No porque CETES o el ladrillo se hayan vuelto malos, sino porque el resto del panorama de oportunidades en México, impulsado por el momento de nearshoring y consumo que describimos en el primer artículo de esta edición, se ha vuelto más amplio.</p>
+
+    <div class="callout">El punto no es que las participaciones sean mejores. Es que merecen un lugar en la conversación, con los ojos abiertos.</div>
+
+    <p>Iliquidez real, horizonte de varios años, y una dependencia total de la calidad del operador que administra tu capital. Quien entre a este tipo de instrumento buscando la liquidez de un CETE o la sensación de control de un inmueble propio, va a estar decepcionado. Quien entre entendiendo exactamente ese trade-off, tiene una tercera herramienta genuina en el portafolio, no un reemplazo de las otras dos, sino un complemento con un perfil de riesgo-rendimiento que ninguna de las otras dos ofrece por sí sola.</p>
+
+    <h2 class="section-head">Lo que hay que vigilar</h2>
+    <p>El Radar seguirá de cerca tres variables antes de la próxima edición: la trayectoria de las próximas decisiones de tasa de Banxico, el comportamiento de la inflación frente a la meta del 3% para 2027, y el desempeño del mercado inmobiliario en el segundo semestre conforme el efecto Mundial se refleja en el consumo.</p>
+
+    <p>Gracias por leernos.</p>
+
+    <div class="fuentes">
+      <div class="fuentes-title">Fuentes</div>
+      <ol>
+        <li id="f3-1"><strong>1.</strong> Grupo VEQ, "Plusvalía vs. Rentabilidad: Qué debe priorizar cada tipo de inversionista en 2026" (tasa de referencia Banxico, encuesta CBRE) — <a href="https://grupoveq.com/plusvalia-vs-rentabilidad-tipo-inversionista-2/" target="_blank" rel="noopener">grupoveq.com</a> <a class="back" href="#r3-1">↩</a></li>
+        <li id="f3-2"><strong>2.</strong> Imagen Radio, "Cetes: así quedaron los rendimientos para la semana del 14 al 21 de julio" — <a href="https://www.imagenradio.com.mx/finanzas/cetes-quedaron-rendimientos-para-semana-14-21-julio" target="_blank" rel="noopener">imagenradio.com.mx</a> <a class="back" href="#r3-2">↩</a></li>
+        <li id="f3-3"><strong>3.</strong> HolaNeo, "Plusvalía inmobiliaria: qué es, cómo funciona y cómo aprovecharla en México" — <a href="https://www.holaneo.com/guias/plusvalia-inmobiliaria-que-es-y-como-funciona" target="_blank" rel="noopener">holaneo.com</a> <a class="back" href="#r3-3">↩</a></li>
+        <li id="f3-4"><strong>4.</strong> Tanda Casa, "Cap rate inmobiliario en México 2026" — <a href="https://tandacasa.com/blog/cap-rate-inmobiliario-mexico-2026" target="_blank" rel="noopener">tandacasa.com</a> <a class="back" href="#r3-4">↩</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section id="cierre">
+  <div class="wrap">
+    <div class="eyebrow">Cierre</div>
+    <h1 class="art-title">En el radar</h1>
+    <div class="art-meta">Edición 1 · Radar de Obsidiana</div>
+
+    <p class="lede">Cada edición cerramos igual: no con opiniones, sino con las señales que vamos a seguir vigilando hasta la próxima entrega. Esto es lo que tiene nuestra atención de cara a los próximos meses:</p>
+
+    <div class="radar-item"><span class="num">1</span><strong>La próxima decisión de Banxico.</strong> Con la tasa de referencia en 6.50% y un ciclo de recortes que ya lleva casi cinco puntos desde el máximo de 2023, la pregunta no es si seguirá bajando, sino qué tan rápido, y qué le hace eso al rendimiento real de CETES frente a otras alternativas.</div>
+
+    <div class="radar-item"><span class="num">2</span><strong>Infraestructura energética y nearshoring.</strong> BBVA ya marcó la advertencia: la matriz energética del país necesita inversión para sostener el ritmo de relocalización industrial. Vamos a monitorear si ese avance se acelera o si se convierte en el freno del periodo 2026-2030.</div>
+
+    <div class="radar-item"><span class="num">3</span><strong>La descentralización geográfica del capital.</strong> Puebla ya escaló al sexto lugar nacional en franquicias; el Corredor Interoceánico y el AIFA empujan logística hacia el sureste. Vamos a seguir el mapa de cerca, especialmente la pregunta de qué otras regiones entran a esta conversación.</div>
+
+    <div class="radar-item"><span class="num">4</span><strong>Adopción tecnológica real vs. discurso.</strong> El sector franquicias dice que el 30% ya integra IA en sus operaciones. Vamos a buscar evidencia concreta de qué tan a fondo llega esa adopción, más allá del dato de la encuesta.</div>
+
+    <div class="next-box">
+      <div class="label">Próxima edición</div>
+      <h3>&ldquo;El ladrillo mental&rdquo;</h3>
+      <p>En la Edición 2 nos movemos de la macroeconomía a algo más personal: por qué el mexicano con capital invierte como invierte, qué tan real es la diversificación que cree tener, y por qué la liquidez que tanto exigimos casi nunca la usamos. Si esta edición fue sobre el país, la siguiente es sobre el espejo.</p>
+    </div>
+
+    <p class="closing-note">Si este primer número te generó una pregunta, un desacuerdo, o simplemente quieres profundizar en algo que tocamos aquí, escríbenos. Este espacio se construye mejor con lectores que cuestionan, no con lectores que solo asienten.</p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="brandmark">Radar de Obsidiana</div>
+  <div class="fine">Edición 01 · Julio 2026</div>
+</footer>
+
+</body>
+</html>
